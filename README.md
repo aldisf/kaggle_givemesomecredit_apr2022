@@ -56,8 +56,8 @@ You can either use an environment manager like `conda` or run using `docker`. Th
 
 ### Analysis
 
-- Dockerfile-analysis
-- requirements-analysis.txt
+- `Dockerfile-analysis`
+- `requirements-analysis.txt`
 
 To create the analysis environment using `conda`:
 
@@ -77,8 +77,8 @@ make run_jupyter_dev
 
 ### Serving
 
-- Dockerfile-serving
-- requirements-serving.txt
+- `Dockerfile-serving`
+- `requirements-serving.txt`
 
 Note that these commands will start a uvicorn-FastAPI server at port 8888. You can follow the link shown in the terminal to
 open the root route of the API, and you can append `/docs` at the end to see the Swagger UI, which you can visit here
