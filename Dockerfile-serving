@@ -1,0 +1,9 @@
+FROM python:3.9.7
+
+WORKDIR $HOME/delinquency_serving
+
+COPY . $HOME/delinquency_serving
+RUN pip install -r requirements-serving.txt
+
+ENTRYPOINT ["make"]
+CMD ["start_server"]
