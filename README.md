@@ -91,6 +91,7 @@ pip install -r requirements-serving.txt
 make start_server
 ```
 
+To launch the serving using `docker`:
 ```bash
 make serve
 ```
