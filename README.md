@@ -5,7 +5,98 @@ Data and descriptions can be found in the link above.
 
 Analysis, modeling and answers to questions can be found the notebook file [analysis_and_modeling.ipynb](./analysis_and_modeling.ipynb)
 
-```sh
+The final modeling approach using tuned Light GBM was able to get into the top 100 private leaderboard:
+
+![submissions](kaggle_screenshots/submissions.png)
+
+![leaderboard](kaggle_screenshots/leaderboard.png)
+
+## Folder Structure
+
+```
+.
+├── Dockerfile-analysis
+├── Dockerfile-serving
+├── Makefile
+├── README.md
+├── analysis_and_modeling.ipynb
+├── data
+│   ├── Data Dictionary.xls
+│   ├── cs-test.csv
+│   ├── cs-training.csv
+│   └── sampleEntry.csv
+├── kaggle_screenshots
+│   ├── leaderboard.png
+│   └── submissions.png
+├── main.py
+├── requirements-analysis.txt
+├── requirements-serving.txt
+├── src
+│   ├── __init__.py
+│   ├── constants.py
+│   ├── eda
+│   ├── formatters
+│   ├── preprocessing
+│   ├── routes
+│   ├── services
+│   ├── train
+│   ├── train_artifacts (saved imputer, cap dict and trained model)
+│   └── utils.py
+└── submissions
+    ├── ensemble.csv
+    └── lgbm_tuned_rs.csv
+```
+
+## Setting up the environment
+
+This repository provides two environments. One for analysis and modeling, and the other one for serving.
+You can either use an environment manager like `conda` or run using `docker`. These two options has been wrapped in the `Makefile`:
+
+### Analysis
+
+- Dockerfile-analysis
+- requirements-analysis.txt
+
+To create the analysis environment using `conda`:
+
+```bash
+make create_conda_dev
+conda activate givemesomecredit_aldisf_dev
+pip install -r requirements-analysis.txt
+jupyter lab
+```
+
+To run the analysis environment using `docker` (note that this will automatically spin up a jupyter lab server in the terminal,
+and you can directly follow the link to open the jupyter lab environment):
+
+```bash
+make run_jupyter_dev
+```
+
+### Serving
+
+- Dockerfile-serving
+- requirements-serving.txt
+
+Note that these commands will start a uvicorn-FastAPI server at port 8888. You can follow the link shown in the terminal to
+open the root route of the API, and you can append `/docs` at the end to see the Swagger UI, which you can visit here
+once you have started the server as well: [Swagger UI](http://127.0.0.1:8888/docs).
+
+```bash
+make create_conda_serving
+conda activate givemesomecredit_aldisf_serving
+pip install -r requirements-serving.txt
+make start_server
+```
+
+```bash
+make serve
+```
+
+For both usage using `conda` and `docker`, once you have started the server, you can
+open up a new terminal window and tries an example request using the command:
+
+```bash
 curl -X 'POST' \
   'http://127.0.0.1:8888/delinquency/delinquency' \
   -H 'accept: application/json' \
@@ -22,4 +113,10 @@ curl -X 'POST' \
   "NumberOfTime60_89DaysPastDueNotWorse": 0,
   "NumberOfDependents": 0
 }'
+```
+
+Which has been wrapped in the `Makefile` as well, and you can call it via:
+
+```bash
+make example_request
 ```
