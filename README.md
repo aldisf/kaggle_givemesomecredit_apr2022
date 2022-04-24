@@ -9,6 +9,8 @@ The final modeling approach using tuned Light GBM was able to get into the top 1
 
 ![submissions](kaggle_screenshots/submissions.png)
 
+WIth the score of `0.86784`, the submission will beat the 63th private leaderboard position at `0.86782`.
+
 ![leaderboard](kaggle_screenshots/leaderboard.png)
 
 ## Folder Structure
@@ -119,4 +121,24 @@ Which has been wrapped in the `Makefile` as well, and you can call it via:
 
 ```bash
 make example_request
+```
+
+Or you can try out the API via the Swagger UI linked above. The expected response then will be:
+```
+{
+    "DefaultProb":0.05612784857941346,
+    "metadata":
+        {
+            "RevolvingUtilizationOfUnsecuredLines":0.88551908,
+            "age":43,
+            "NumberOfTime30_59DaysPastDueNotWorse":0,
+            "DebtRatio":0.177512717,
+            "MonthlyIncome":5700.0,
+            "NumberOfOpenCreditLinesAndLoans":4,
+            "NumberOfTimes90DaysLate":0,
+            "NumberRealEstateLoansOrLines":0,
+            "NumberOfTime60_89DaysPastDueNotWorse":0,
+            "NumberOfDependents":0.0
+        }
+}
 ```
