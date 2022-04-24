@@ -1,4 +1,0 @@
-FROM python:3.9.7
-COPY requirements-analysis.txt .
-RUN pip install -r requirements-analysis.txt
-RUN rm requirements-analysis.txt
