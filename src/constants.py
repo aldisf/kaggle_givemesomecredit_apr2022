@@ -1,5 +1,6 @@
 TRAIN_DATA_PATH = "data/cs-training.csv"
 TEST_DATA_PATH = "data/cs-test.csv"
+SUBMISSIONS_FOLDER_PATH = "submissions"
 
 LABEL_COL = "SeriousDlqin2yrs"
 
@@ -17,4 +18,4 @@ FEATURES_COL_LIST = [
 ]
 
 RANDOM_SEED = 20220423
-VAL_SIZE = 0.2
+VAL_SIZE = 0.1
